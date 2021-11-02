@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using DotnetCore3.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +13,7 @@ namespace DotnetCore3.Controllers
         private static List<Character> characters = new List<Character>
         {
             new Character(),
-            new Character {Name = "Radagast"}
+            new Character {Id = 1, Name = "Radagast"}
         };
         
         [HttpGet("GetAll")]
@@ -21,10 +22,10 @@ namespace DotnetCore3.Controllers
             return Ok(characters);
         }
 
-        [HttpGet]
-        public IActionResult GetSingle()
+        [HttpGet("{id}")]
+        public IActionResult GetSingle(int id)
         {
-            return Ok(characters[0]);
+            return Ok(characters.FirstOrDefault(c => c.Id == id));
         }
 
     }

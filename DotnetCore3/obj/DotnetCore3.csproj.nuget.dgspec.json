@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\MyCodingEnvironment\\Repositories\\netcore3\\DotnetCore3\\DotnetCore3\\DotnetCore3.csproj": {}
+    "D:\\MyCodingEnvironment\\Repositories\\DotnetCore3\\DotnetCore3\\DotnetCore3.csproj": {}
   },
   "projects": {
-    "D:\\MyCodingEnvironment\\Repositories\\netcore3\\DotnetCore3\\DotnetCore3\\DotnetCore3.csproj": {
+    "D:\\MyCodingEnvironment\\Repositories\\DotnetCore3\\DotnetCore3\\DotnetCore3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\MyCodingEnvironment\\Repositories\\netcore3\\DotnetCore3\\DotnetCore3\\DotnetCore3.csproj",
+        "projectUniqueName": "D:\\MyCodingEnvironment\\Repositories\\DotnetCore3\\DotnetCore3\\DotnetCore3.csproj",
         "projectName": "DotnetCore3",
-        "projectPath": "D:\\MyCodingEnvironment\\Repositories\\netcore3\\DotnetCore3\\DotnetCore3\\DotnetCore3.csproj",
+        "projectPath": "D:\\MyCodingEnvironment\\Repositories\\DotnetCore3\\DotnetCore3\\DotnetCore3.csproj",
         "packagesPath": "C:\\Users\\lqfme\\.nuget\\packages\\",
-        "outputPath": "D:\\MyCodingEnvironment\\Repositories\\netcore3\\DotnetCore3\\DotnetCore3\\obj\\",
+        "outputPath": "D:\\MyCodingEnvironment\\Repositories\\DotnetCore3\\DotnetCore3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lqfme\\AppData\\Roaming\\NuGet\\NuGet.Config",
