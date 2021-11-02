@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DotnetCore3.Models;
 using DotnetCore3.Services.CharacterService;
 using Microsoft.AspNetCore.Mvc;
@@ -18,21 +19,21 @@ namespace DotnetCore3.Controllers
         }
 
         [HttpGet("GetAll")]
-        public IActionResult GetActionResult()
+        public async Task<IActionResult> GetActionResult()
         {
-            return Ok(_characterService.GetAllCharacters());
+            return Ok(await _characterService.GetAllCharacters());
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetSingle(int id)
+        public async Task<IActionResult> GetSingle(int id)
         {
-            return Ok(_characterService.GetCharacterById(id));
+            return Ok(await _characterService.GetCharacterById(id));
         }
 
         [HttpPost]
-        public IActionResult AddCarachter(Character newCharacter)
+        public async Task<IActionResult> AddCarachter(Character newCharacter)
         {           
-            return Ok(_characterService.AddCharacter(newCharacter));
+            return Ok(await _characterService.AddCharacter(newCharacter));
         }
     }
 }
