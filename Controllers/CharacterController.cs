@@ -14,9 +14,15 @@ namespace DotnetCore3.Controllers
             new Character {name = "Radagast"}
         };
 
+        [Route("GetAll")]
         public IActionResult Get()
         {
             return Ok(characters);
-        }        
+        } 
+
+        public IActionResult GetSingle()
+        {
+            return Ok(characters[0]);
+        }       
     }
 }
