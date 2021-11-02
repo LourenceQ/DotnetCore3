@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DotnetCore3.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,11 +8,15 @@ namespace DotnetCore3.Controllers
     [Route("[controller]")]
     public class CharacterController : ControllerBase
     {
-        private static Character knight = new Character();
+        private static List<Character> characters = new List<Character>
+        {
+            new Character(),
+            new Character {name = "Radagast"}
+        };
 
         public IActionResult Get()
         {
-            return Ok(knight);
+            return Ok(characters);
         }        
     }
 }
