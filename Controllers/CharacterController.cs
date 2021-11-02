@@ -20,6 +20,7 @@ namespace DotnetCore3.Controllers
             return Ok(characters);
         } 
 
+        [HttpGet]
         public IActionResult GetSingle()
         {
             return Ok(characters[0]);
