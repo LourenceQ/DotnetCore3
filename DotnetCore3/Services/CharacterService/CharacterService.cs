@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using DotnetCore3.Dto.Character;
 using DotnetCore3.Models;
 
@@ -9,10 +10,17 @@ namespace DotnetCore3.Services.CharacterService
     public class CharacterService : ICharacterService
     {
         private static List<Character> characters = new List<Character>
-        {            
+        {
             new Character(),
             new Character {Id = 1, Name = "Radagast"}
         };
+        private readonly IMapper _mapper;
+
+        public CharacterService(IMapper mapper)
+        {
+            _mapper = mapper;
+
+        }
         public async Task<ServiceResponse<List<AddCharacterDto>>> AddCharacter(AddCharacterDto newCharacter)
         {
             ServiceResponse<List<GetCharacterDto>> serviceResponse = new ServiceResponse<List<GetCharacterDto>>();

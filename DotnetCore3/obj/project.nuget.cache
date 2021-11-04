@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "5JvUrEVm+BMg22bCAafalGBXbEfw0TWRx4/+YepvYJhzFOhL7Fyicqr+J3gTwQ+Fv/eIqCRI7NkPPlWLVHS3sA==",
+  "dgSpecHash": "HwjHjh/Hd1Jb/qvJy8BTVPjDxd98PjIuMNoB4NOQn885qA5iqKzMDTokNoe19dbwh6vkJSepyv53jc0lfPxO1w==",
   "success": true,
   "projectFilePath": "D:\\MyCodingEnvironment\\Repositories\\DotnetCore3\\DotnetCore3\\DotnetCore3.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\lqfme\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\lqfme\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
+    "C:\\Users\\lqfme\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\lqfme\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.0.0\\microsoft.extensions.dependencyinjection.abstractions.3.0.0.nupkg.sha512",
+    "C:\\Users\\lqfme\\.nuget\\packages\\microsoft.extensions.options\\3.0.0\\microsoft.extensions.options.3.0.0.nupkg.sha512",
+    "C:\\Users\\lqfme\\.nuget\\packages\\microsoft.extensions.primitives\\3.0.0\\microsoft.extensions.primitives.3.0.0.nupkg.sha512",
+    "C:\\Users\\lqfme\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512"
+  ],
   "logs": []
 }
