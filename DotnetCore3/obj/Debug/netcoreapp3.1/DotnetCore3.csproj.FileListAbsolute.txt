@@ -40,3 +40,6 @@ D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\obj\Debug\netcoreapp
 D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\obj\Debug\netcoreapp3.1\DotnetCore3.dll
 D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\obj\Debug\netcoreapp3.1\DotnetCore3.pdb
 D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\obj\Debug\netcoreapp3.1\DotnetCore3.genruntimeconfig.cache
+D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\bin\Debug\netcoreapp3.1\AutoMapper.dll
+D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\obj\Debug\netcoreapp3.1\DotnetCore3.csproj.CopyComplete
