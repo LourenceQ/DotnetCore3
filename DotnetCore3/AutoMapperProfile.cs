@@ -9,6 +9,7 @@ namespace DotnetCore3
         public AutoMapperProfile()
         {
             CreateMap<Character, GetCharacterDto>();
+            CreateMap<Character, AddCharacterDto>();
         }
     }
 }
