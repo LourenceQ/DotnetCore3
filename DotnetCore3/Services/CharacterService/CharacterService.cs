@@ -19,12 +19,13 @@ namespace DotnetCore3.Services.CharacterService
         public CharacterService(IMapper mapper)
         {
             _mapper = mapper;
-
         }
         public async Task<ServiceResponse<List<GetCharacterDto>>> AddCharacter(AddCharacterDto newCharacter)
         {
             ServiceResponse<List<GetCharacterDto>> serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
-            characters.Add(_mapper.Map<Character>(newCharacter));
+            Character character = _mapper.Map<Character>(newCharacter);
+            character.Id = characters.Max(c => c.Id) + 1;
+            characters.Add(character);
             serviceResponse.Data = (characters.Select(c => _mapper.Map<GetCharacterDto>(c))).ToList();
             return serviceResponse;
         }
@@ -40,6 +41,23 @@ namespace DotnetCore3.Services.CharacterService
         {
             ServiceResponse<GetCharacterDto> serviceResponse = new ServiceResponse<GetCharacterDto>();
             serviceResponse.Data = _mapper.Map<GetCharacterDto>(characters.FirstOrDefault(c => c.Id == id));
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<GetCharacterDto>> UpdateCharacter(UpdateCharacterDto updateCharacterDto)
+        {
+            ServiceResponse<GetCharacterDto> serviceResponse = new ServiceResponse<GetCharacterDto>();
+
+            Character character = characters.FirstOrDefault(c => c.Id == updateCharacterDto.Id);    
+            character.Name = updateCharacterDto.Name;
+            character.Class = updateCharacterDto.Class;
+            character.Defense = updateCharacterDto.Defense;
+            character.HitPoints = updateCharacterDto.HitPoints;
+            character.Intelligence = updateCharacterDto.Intelligence;
+            character.Strength = updateCharacterDto.Strength;
+
+            serviceResponse.Data = _mapper.Map<GetCharacterDto>(character);
+
             return serviceResponse;
         }
     }
