@@ -82,6 +82,5 @@ D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\bin\Debug\netcoreapp
 D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\obj\Debug\netcoreapp3.1\DotnetCore3.csproj.CopyComplete
 D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\bin\Debug\netcoreapp3.1\Humanizer.dll
 D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
