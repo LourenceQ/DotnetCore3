@@ -11,5 +11,6 @@ namespace DotnetCore3.Services.CharacterService
         Task<ServiceResponse<GetCharacterDto>> GetCharacterById(int id);
         Task<ServiceResponse<List<GetCharacterDto>>> AddCharacter(AddCharacterDto newCharacter);
         Task<ServiceResponse<GetCharacterDto>> UpdateCharacter(UpdateCharacterDto updateCharacterDto);
+        Task<ServiceResponse<List<GetCharacterDto>>> DeleteCharacter(int id);
     }
 }
