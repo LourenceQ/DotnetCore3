@@ -38,9 +38,14 @@ namespace DotnetCore3.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateCharacter(UpdateCharacterDto updateCharacterDto)
-        {           
-            return Ok(await _characterService.UpdateCharacter(updateCharacterDto));
+        public async Task<IActionResult> UpdateCharacter(UpdateCharacterDto updateCharacter)
+        {      
+            ServiceResponse<GetCharacterDto> response = await _characterService.UpdateCharacter(updateCharacter); 
+            if (response.Data == null)
+            {
+                return NotFound(response);
+            }     
+            return Ok(response);
         }
     }
 }

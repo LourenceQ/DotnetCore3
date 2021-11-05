@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -47,17 +48,25 @@ namespace DotnetCore3.Services.CharacterService
         public async Task<ServiceResponse<GetCharacterDto>> UpdateCharacter(UpdateCharacterDto updateCharacterDto)
         {
             ServiceResponse<GetCharacterDto> serviceResponse = new ServiceResponse<GetCharacterDto>();
+            try
+            {
+                Character character = characters.FirstOrDefault(c => c.Id == updateCharacterDto.Id);    
+                character.Name = updateCharacterDto.Name;
+                character.Class = updateCharacterDto.Class;
+                character.Defense = updateCharacterDto.Defense;
+                character.HitPoints = updateCharacterDto.HitPoints;
+                character.Intelligence = updateCharacterDto.Intelligence;
+                character.Strength = updateCharacterDto.Strength;
 
-            Character character = characters.FirstOrDefault(c => c.Id == updateCharacterDto.Id);    
-            character.Name = updateCharacterDto.Name;
-            character.Class = updateCharacterDto.Class;
-            character.Defense = updateCharacterDto.Defense;
-            character.HitPoints = updateCharacterDto.HitPoints;
-            character.Intelligence = updateCharacterDto.Intelligence;
-            character.Strength = updateCharacterDto.Strength;
+                serviceResponse.Data = _mapper.Map<GetCharacterDto>(character);
 
-            serviceResponse.Data = _mapper.Map<GetCharacterDto>(character);
-
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+            
             return serviceResponse;
         }
     }
