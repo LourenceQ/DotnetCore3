@@ -34,7 +34,7 @@ namespace DotnetCore3.Services.CharacterService
             await _context.SaveChangesAsync();
             serviceResponse.Data = (_context.Characters.Select(c => _mapper.Map<GetCharacterDto>(c))).ToList();
             return serviceResponse;
-        }
+        }//
 
         public async Task<ServiceResponse<List<GetCharacterDto>>> DeleteCharacter(int id)
         {
