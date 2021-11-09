@@ -77,13 +77,16 @@ namespace DotnetCore3.Services.CharacterService
             ServiceResponse<GetCharacterDto> serviceResponse = new ServiceResponse<GetCharacterDto>();
             try
             {
-                Character character = characters.FirstOrDefault(c => c.Id == updateCharacterDto.Id);
+                Character character = await _context.Characters.FirstOrDefaultAsync(c => c.Id == updateCharacterDto.Id);
                 character.Name = updateCharacterDto.Name;
                 character.Class = updateCharacterDto.Class;
                 character.Defense = updateCharacterDto.Defense;
                 character.HitPoints = updateCharacterDto.HitPoints;
                 character.Intelligence = updateCharacterDto.Intelligence;
                 character.Strength = updateCharacterDto.Strength;
+
+                _context.Characters.Update(character);
+                await _context.SaveChangesAsync();
 
                 serviceResponse.Data = _mapper.Map<GetCharacterDto>(character);
 
