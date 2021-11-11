@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using DotnetCore3.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotnetCore3.Data
 {
@@ -30,9 +31,14 @@ namespace DotnetCore3.Data
             return response;
          }
 
-        public Task<bool> userExists(string username)
+        public async Task<bool> UserExists(string username)
         {
-            throw new System.NotImplementedException();
+            if(await _context.users.AnyAsync(x => x.Username.ToLower() == username.ToLower()))
+            {
+                return true;
+            }
+            return false;
+            
         }
 
         private void CreatePassWordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
