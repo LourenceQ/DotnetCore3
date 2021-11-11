@@ -16,8 +16,13 @@ namespace DotnetCore3.Data
             throw new System.NotImplementedException();
         }
 
-        public async Task<ServiceResponse<int>> Register(User user, string pawssword)
+        public async Task<ServiceResponse<int>> Register(User user, string password)
         {
+            CreatePassWordHash(password, out byte[] passwordhash, out byte[] passwordSalt);
+
+            user.PasswordHash = passwordhash;
+            user.PasswordSalt = passwordSalt;
+            
             await _context.users.AddAsync(user);
             await _context.SaveChangesAsync();
             ServiceResponse<int> response = new ServiceResponse<int>();
