@@ -19,6 +19,14 @@ namespace DotnetCore3.Data
 
         public async Task<ServiceResponse<int>> Register(User user, string password)
         {
+            ServiceResponse<int> response = new ServiceResponse<int>();
+            if(await UserExists(user.Username))
+            {
+                response.Success = false;
+                response.Message = "Usuário já cadastrado";
+                return response;
+            }
+            
             CreatePassWordHash(password, out byte[] passwordhash, out byte[] passwordSalt);
 
             user.PasswordHash = passwordhash;
@@ -26,10 +34,9 @@ namespace DotnetCore3.Data
             
             await _context.users.AddAsync(user);
             await _context.SaveChangesAsync();
-            ServiceResponse<int> response = new ServiceResponse<int>();
             response.Data = user.Id;
             return response;
-         }
+        }
 
         public async Task<bool> UserExists(string username)
         {
