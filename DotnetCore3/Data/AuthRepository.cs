@@ -12,9 +12,26 @@ namespace DotnetCore3.Data
             _context = context;
 
         }
-        public Task<ServiceResponse<string>> Login(string username, string password)
+        public async Task<ServiceResponse<string>> Login(string username, string password)
         {
-            throw new System.NotImplementedException();
+            ServiceResponse<string> response = new ServiceResponse<string>();
+            User user = await _context.users.FirstOrDefaultAsync(x => x.Username.ToLower().Equals(username.ToLower()));
+            if(user == null)
+            {
+                response.Success = false;
+                response.Message = "User not found.";
+            }
+            else if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt)
+            {                
+                response.Success = false;
+                response.Message = "Wrong Password";
+            }
+            else
+            {
+                response.Data = user.Id.ToString();
+            }
+
+            return response;
         }
 
         public async Task<ServiceResponse<int>> Register(User user, string password)
