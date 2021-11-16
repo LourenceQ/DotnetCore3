@@ -85,4 +85,3 @@ D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\bin\Debug\netcoreapp
 D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\bin\Debug\netcoreapp3.1\Humanizer.dll
 D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-D:\MyCodingEnvironment\Repositories\DotnetCore3\DotnetCore3\obj\Debug\netcoreapp3.1\DotnetCore3.csproj.CopyComplete
