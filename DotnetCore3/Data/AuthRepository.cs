@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using AutoMapper.Configuration;
 using DotnetCore3.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace DotnetCore3.Data
@@ -101,8 +101,8 @@ namespace DotnetCore3.Data
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.Tostring()),
-                new Claim(ClaimTyeps.Name, user.UserName)
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Username)
             };
 
             SymmetricSecurityKey key = new SymmetricSecurityKey(
