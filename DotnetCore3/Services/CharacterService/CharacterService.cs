@@ -31,6 +31,7 @@ namespace DotnetCore3.Services.CharacterService
         {
             ServiceResponse<List<GetCharacterDto>> serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
             Character character = _mapper.Map<Character>(newCharacter);
+            character.Users = await _context.users.FirstOrDefaultAsync(u => u.Id == GetUserId());
 
             await _context.Characters.AddAsync(character);
             await _context.SaveChangesAsync();
