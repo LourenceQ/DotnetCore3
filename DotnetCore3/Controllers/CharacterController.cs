@@ -35,7 +35,7 @@ namespace DotnetCore3.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddCarachter(AddCharacterDto newCharacter)
+        public async Task<IActionResult> AddCharacter(AddCharacterDto newCharacter)
         {           
             return Ok(await _characterService.AddCharacter(newCharacter));
         }
