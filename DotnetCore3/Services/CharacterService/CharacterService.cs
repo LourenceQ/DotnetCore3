@@ -1,25 +1,32 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using DotnetCore3.Data;
 using DotnetCore3.Dto.Character;
 using DotnetCore3.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotnetCore3.Services.CharacterService
 {
     public class CharacterService : ICharacterService
-    {        
+    {
         private readonly IMapper _mapper;
         private readonly DataContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CharacterService(IMapper mapper, DataContext context)
+        public CharacterService(IMapper mapper, DataContext context, IHttpContextAccessor httpContextAccessor)
         {
+            _httpContextAccessor = httpContextAccessor;
             _context = context;
             _mapper = mapper;
         }
+
+        private int GetUserId() => int.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
+        
         public async Task<ServiceResponse<List<GetCharacterDto>>> AddCharacter(AddCharacterDto newCharacter)
         {
             ServiceResponse<List<GetCharacterDto>> serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
@@ -52,10 +59,10 @@ namespace DotnetCore3.Services.CharacterService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<GetCharacterDto>>> GetAllCharacters(int userId)
+        public async Task<ServiceResponse<List<GetCharacterDto>>> GetAllCharacters()
         {
             ServiceResponse<List<GetCharacterDto>> serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
-            List<Character> dbCharacters = await _context.Characters.Where(c => c.Users.Id == userId).ToListAsync();
+            List<Character> dbCharacters = await _context.Characters.Where(c => c.Users.Id == GetUserId()).ToListAsync();
             serviceResponse.Data = (dbCharacters.Select(c => _mapper.Map<GetCharacterDto>(c))).ToList();
             return serviceResponse;
         }
