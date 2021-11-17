@@ -71,7 +71,8 @@ namespace DotnetCore3.Services.CharacterService
         public async Task<ServiceResponse<GetCharacterDto>> GetCharacterById(int id)
         {
             ServiceResponse<GetCharacterDto> serviceResponse = new ServiceResponse<GetCharacterDto>();
-            Character dbCharacter = await _context.Characters.FirstOrDefaultAsync(c => c.Id == id);
+            Character dbCharacter = await _context.Characters
+            .FirstOrDefaultAsync(c => c.Id == id && c.Users.Id == GetUserId());
             serviceResponse.Data = _mapper.Map<GetCharacterDto>(dbCharacter);
             return serviceResponse;
         }
