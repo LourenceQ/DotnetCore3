@@ -44,7 +44,8 @@ namespace DotnetCore3.Services.CharacterService
             ServiceResponse<List<GetCharacterDto>> serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
             try
             {
-                Character character = await _context.Characters.FirstAsync(c => c.Id == id);
+                Character character = await _context.Characters
+                    .FirstOrDefaultAsync(c => c.Id == id && c.Users.Id == GetUserId());
                 _context.Characters.Remove(character);
                 await _context.SaveChangesAsync();
 
