@@ -46,10 +46,22 @@ namespace DotnetCore3.Services.CharacterService
             {
                 Character character = await _context.Characters
                     .FirstOrDefaultAsync(c => c.Id == id && c.Users.Id == GetUserId());
-                _context.Characters.Remove(character);
-                await _context.SaveChangesAsync();
+                if(character != null)
+                {
+                    _context.Characters.Remove(character);
+                    await _context.SaveChangesAsync();
 
-                serviceResponse.Data = (_context.Characters.Select(c => _mapper.Map<GetCharacterDto>(c))).ToList();
+                    serviceResponse.Data = (_context.Characters
+                        .Where(c => c.Users.Id == GetUserId())
+                        .Select(c => _mapper.Map<GetCharacterDto>(c))).ToList();
+                }
+                else
+                {
+                    serviceResponse.Success = false;
+                    serviceResponse.Message = "Character not found";
+                }
+
+                
 
             }
             catch (Exception ex)
