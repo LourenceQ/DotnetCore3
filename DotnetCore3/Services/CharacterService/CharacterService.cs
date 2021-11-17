@@ -95,19 +95,26 @@ namespace DotnetCore3.Services.CharacterService
             ServiceResponse<GetCharacterDto> serviceResponse = new ServiceResponse<GetCharacterDto>();
             try
             {
-                Character character = await _context.Characters.FirstOrDefaultAsync(c => c.Id == updateCharacterDto.Id);
-                character.Name = updateCharacterDto.Name;
-                character.Class = updateCharacterDto.Class;
-                character.Defense = updateCharacterDto.Defense;
-                character.HitPoints = updateCharacterDto.HitPoints;
-                character.Intelligence = updateCharacterDto.Intelligence;
-                character.Strength = updateCharacterDto.Strength;
+                Character character = await _context.Characters.Include(c => c.Users).FirstOrDefaultAsync(c => c.Id == updateCharacterDto.Id);
+                if(character.Users.Id == GetUserId())
+                {                
+                    character.Name = updateCharacterDto.Name;
+                    character.Class = updateCharacterDto.Class;
+                    character.Defense = updateCharacterDto.Defense;
+                    character.HitPoints = updateCharacterDto.HitPoints;
+                    character.Intelligence = updateCharacterDto.Intelligence;
+                    character.Strength = updateCharacterDto.Strength;
 
-                _context.Characters.Update(character);
-                await _context.SaveChangesAsync();
+                    _context.Characters.Update(character);
+                    await _context.SaveChangesAsync();
 
-                serviceResponse.Data = _mapper.Map<GetCharacterDto>(character);
-
+                    serviceResponse.Data = _mapper.Map<GetCharacterDto>(character);
+                }
+                else
+                {
+                    serviceResponse.Success = false;
+                    serviceResponse.Message = "Character not found";
+                }
             }
             catch (Exception ex)
             {
