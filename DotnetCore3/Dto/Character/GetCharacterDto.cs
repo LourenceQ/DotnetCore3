@@ -1,3 +1,4 @@
+using DotnetCore3.Dto.Weapon;
 using DotnetCore3.Models;
 
 namespace DotnetCore3.Dto.Character
@@ -10,7 +11,7 @@ namespace DotnetCore3.Dto.Character
         public int Strength { get; set; } = 10;
         public int Defense { get; set; } = 10;
         public int Intelligence { get; set; } = 10;
-
         public RpgClass Class { get; set; } = RpgClass.Mage;
+        public GetWeaponDto Weapon { get; set; }
     }
 }

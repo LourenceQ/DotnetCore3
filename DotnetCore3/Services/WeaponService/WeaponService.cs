@@ -46,6 +46,8 @@ namespace DotnetCore3.Services.WeaponService
                 };
                 await _context.Weapons.AddAsync(weapon);
                 await _context.SaveChangesAsync();
+
+                response.Data = _mapper.Map<GetCharacterDto>(character);
             }
             catch(Exception ex)
             {

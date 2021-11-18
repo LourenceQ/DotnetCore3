@@ -1,5 +1,6 @@
 using AutoMapper;
 using DotnetCore3.Dto.Character;
+using DotnetCore3.Dto.Weapon;
 using DotnetCore3.Models;
 
 namespace DotnetCore3
@@ -10,6 +11,7 @@ namespace DotnetCore3
         {
             CreateMap<Character, GetCharacterDto>();
             CreateMap<AddCharacterDto, Character>();
+            CreateMap<Weapon, GetWeaponDto>();
         }
     }
 }

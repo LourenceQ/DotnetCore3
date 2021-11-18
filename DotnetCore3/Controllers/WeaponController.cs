@@ -15,7 +15,6 @@ namespace DotnetCore3.Controllers
         public WeaponController(IWeaponService weaponService)
         {
             _weaponService = weaponService;
-
         }
 
         [HttpPost]
