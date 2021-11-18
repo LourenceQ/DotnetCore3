@@ -10,5 +10,6 @@ namespace DotnetCore3.Models
         public int Intelligence { get; set; } = 10;
         public RpgClass Class { get; set; } = RpgClass.Mage;
         public User Users { get; set; }
+        public Weapon Weapon { get; set; }
     }
 }
