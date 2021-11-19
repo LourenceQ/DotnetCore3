@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace DotnetCore3.Models
 {
     public class Character
@@ -11,5 +13,6 @@ namespace DotnetCore3.Models
         public RpgClass Class { get; set; } = RpgClass.Mage;
         public User Users { get; set; }
         public Weapon Weapon { get; set; }
+        public List<CharacterSkill> CharacterSkills { get; set; }
     }
 }
