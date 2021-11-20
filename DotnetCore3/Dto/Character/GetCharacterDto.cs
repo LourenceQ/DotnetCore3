@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using DotnetCore3.Dto.Skill;
 using DotnetCore3.Dto.Weapon;
 using DotnetCore3.Models;
 
@@ -13,5 +15,6 @@ namespace DotnetCore3.Dto.Character
         public int Intelligence { get; set; } = 10;
         public RpgClass Class { get; set; } = RpgClass.Mage;
         public GetWeaponDto Weapon { get; set; }
+        public List<GetSkillDto> Skills { get; set; }
     }
 }
