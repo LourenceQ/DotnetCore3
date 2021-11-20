@@ -85,7 +85,9 @@ namespace DotnetCore3.Services.CharacterService
         {
             ServiceResponse<GetCharacterDto> serviceResponse = new ServiceResponse<GetCharacterDto>();
             Character dbCharacter = await _context.Characters
-            .FirstOrDefaultAsync(c => c.Id == id && c.Users.Id == GetUserId());
+                .Include(c =>  c.Weapon)
+                .Include(c => c.CharacterSkills).ThenInclude(cs => cs.Skill)
+                .FirstOrDefaultAsync(c => c.Id == id && c.Users.Id == GetUserId());
             serviceResponse.Data = _mapper.Map<GetCharacterDto>(dbCharacter);
             return serviceResponse;
         }
