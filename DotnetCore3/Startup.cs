@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DotnetCore3.Services.WeaponService;
 using DotnetCore3.Services.CharacterSkillService;
+using DotnetCore3.Services.FightService;
 
 namespace DotnetCore3
 {
@@ -55,6 +56,7 @@ namespace DotnetCore3
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IWeaponService, WeaponService>();
             services.AddScoped<ICharacterSkillService, CharacterSkillService>();
+            services.AddScoped<IFightService, FightService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
