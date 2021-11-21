@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using DotnetCore3.Data;
 using DotnetCore3.Dto.Fight;
@@ -65,7 +66,15 @@ namespace DotnetCore3.Services.FightService
                 Character opponent = await _context.Characters.
                     FirstOrDefaultAsync(c => c.Id == request.OpponentId);
 
-                int damage = attacker.Weapon.Damage + (new Random().Next(attacker.Strength));
+                CharacterSkill characterSkill = 
+                    attacker.CharacterSkills.FirstOrDefault(cs => cs.Skill.Id == request.SkillId); 
+                if(characterSkill == null)
+                {
+                    response.Success = false;
+                    response.Message = $"{attacker.Name} doesn't know that skill.";
+                }  
+
+                int damage = characterSkill.Skill.Damage + (new Random().Next(attacker.Strength));
                 damage -= new Random().Next(opponent.Defense);
                 if(damage > 0)
                     opponent.HitPoints -= damage;
