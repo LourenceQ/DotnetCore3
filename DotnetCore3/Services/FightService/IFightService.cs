@@ -1,7 +1,11 @@
+using System.Threading.Tasks;
+using DotnetCore3.Dto.Fight;
+using DotnetCore3.Models;
+
 namespace DotnetCore3.Services.FightService
 {
-    public class IFightService
+    public interface IFightService
     {
-        
+        Task<ServiceResponse<AttackResultDto>> WeaponAttack(WeaponAttackDto request);
     }
 }
