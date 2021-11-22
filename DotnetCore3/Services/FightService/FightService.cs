@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DotnetCore3.Data;
@@ -95,6 +96,45 @@ namespace DotnetCore3.Services.FightService
             }
             catch(Exception ex)
             {
+                response.Success = false;
+                response.Message = ex.Message;
+            }
+            return response;
+        }
+
+        public async Task<ServiceResponse<FightResultDto>> Fight(FightRequestDto request)
+        {
+            ServiceResponse<FightResultDto> response = new ServiceResponse<FightResultDto>
+            {
+                Data = new FightResultDto()
+            };
+            try
+            {
+                 List<Character> character = await _context.Characters
+                    .Include(c => c.Weapon)
+                    .Include(c => c.CharacterSkills).ThenInclude(cs => cs.Skill)
+                    .Where(c => request.CharacterIds.Contains(c.Id)).ToListAsync();
+
+                bool defeated = false;
+                while(!defeated)
+                {
+                    foreach(Character attacker in character)
+                    {
+                        List<Character> opponents = character.Where(c => c.Id != attacker.Id).ToList();
+                        Character opponent = opponents[new Random().Next(opponents.Count)];
+
+                        int damage = 0;
+                        string attackeUsed = string.Empty;
+
+                        bool useWeapon = new Random().Next(2) == 0;
+                        if(useWeapon)
+                        { }
+                        else{ }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {                
                 response.Success = false;
                 response.Message = ex.Message;
             }
