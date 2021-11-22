@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using DotnetCore3.Data;
 using DotnetCore3.Dto.Fight;
 using DotnetCore3.Models;
@@ -12,10 +13,11 @@ namespace DotnetCore3.Services.FightService
     public class FightService : IFightService
     {
         private readonly DataContext _context;
-        public FightService(DataContext context)
+        private readonly IMapper _mapper;
+        public FightService(DataContext context, IMapper mapper)
         {
+            _mapper = mapper;
             _context = context;
-
         }
 
         public async Task<ServiceResponse<AttackResultDto>> WeaponAttack(WeaponAttackDto request)
@@ -121,15 +123,15 @@ namespace DotnetCore3.Services.FightService
             };
             try
             {
-                 List<Character> characters = await _context.Characters
-                    .Include(c => c.Weapon)
-                    .Include(c => c.CharacterSkills).ThenInclude(cs => cs.Skill)
-                    .Where(c => request.CharacterIds.Contains(c.Id)).ToListAsync();
+                List<Character> characters = await _context.Characters
+                   .Include(c => c.Weapon)
+                   .Include(c => c.CharacterSkills).ThenInclude(cs => cs.Skill)
+                   .Where(c => request.CharacterIds.Contains(c.Id)).ToListAsync();
 
                 bool defeated = false;
-                while(!defeated)
+                while (!defeated)
                 {
-                    foreach(Character attacker in characters)
+                    foreach (Character attacker in characters)
                     {
                         List<Character> opponents = characters.Where(c => c.Id != attacker.Id).ToList();
                         Character opponent = opponents[new Random().Next(opponents.Count)];
@@ -138,7 +140,7 @@ namespace DotnetCore3.Services.FightService
                         string attackUsed = string.Empty;
 
                         bool useWeapon = new Random().Next(2) == 0;
-                        if(useWeapon)
+                        if (useWeapon)
                         {
                             attackUsed = attacker.Weapon.Name;
                             damage = DoWeaponAttack(attacker, opponent);
@@ -152,10 +154,10 @@ namespace DotnetCore3.Services.FightService
 
                         response.Data.Log.Add($"{attacker.Name} attacks {opponent.Name} using {attackUsed} with {(damage >= 0 ? damage : 0)} damage.");
 
-                        if(opponent.HitPoints <= 0)
+                        if (opponent.HitPoints <= 0)
                         {
                             defeated = true;
-                            attacker.Victories ++;
+                            attacker.Victories++;
                             opponent.Defeats++;
                             response.Data.Log.Add($"{opponent.Name} has been defeated!");
                             response.Data.Log.Add($"{attacker.Name} wins with {attacker.HitPoints} HP left!");
@@ -174,10 +176,26 @@ namespace DotnetCore3.Services.FightService
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
-            {                
+            {
                 response.Success = false;
                 response.Message = ex.Message;
             }
+            return response;
+        }
+
+        public async Task<ServiceResponse<List<HighScoreDto>>> GetHighScore()
+        {
+            List<Character> characters = await _context.Characters
+                .Where(c => c.Fights > 0)
+                .OrderByDescending(c => c.Victories)
+                .ThenBy(c => c.Defeats)
+                .ToListAsync();
+
+            var response = new ServiceResponse<List<HighScoreDto>>
+            {
+                Data = characters.Select(c => _mapper.Map<HighScoreDto>(c)).ToList()
+            };
+
             return response;
         }
     }
