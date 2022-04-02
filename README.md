@@ -2,7 +2,7 @@
 
 
 
-## Aplicação Web API usando .NET 5, .NET Core. 3.1 , Entity Framework & SQL Server 
+## Aplicação Web API usando .NET 5, .NET Core 3.1 , Entity Framework & SQL Server 
 
 ### Descrição
 
